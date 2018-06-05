@@ -14,46 +14,46 @@ class App extends Component {
     this.state = {
       shoppingCart: []
     }
-
     this.addToShoppingCart = this.addToShoppingCart.bind(this);
     this.removeFromShoppingCart = this.removeFromShoppingCart.bind(this);
   }
 
-  addToShoppingCart(product) {
-    this.setState({
-      shoppingCart: [...this.state.shoppingCart, product]
-    })
-    console.log(this.state.shoppingCart);
-  }
 
-  removeFromShoppingCart(product) {
-    let newShoppingCart = this.state.shoppingCart;
-    newShoppingCart.splice(newShoppingCart.indexOf(product), 1);
-    this.setState({
-      shoppingCart: newShoppingCart
-    })
-    console.log(this.state.shoppingCart);
-  }
+addToShoppingCart(product) {
+  this.setState({
+    shoppingCart: [...this.state.shoppingCart, product]
+  })
+  console.log(this.state.shoppingCart);
+}
 
-  render() {
-    return (
-      <div className="App">
-        <NavBar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/storefront" render={() => {
-            return <StoreFront
-              addToShoppingCart={this.addToShoppingCart} />
-          }} />
-          <Route path="/shoppingcart" render={() => {
-            return <ShoppingCart
-              shoppingCart={this.state.shoppingCart}
-              removeFromShoppingCart={this.removeFromShoppingCart} />
-          }} />
-        </Switch>
-      </div>
-    );
-  }
+removeFromShoppingCart(product) {
+  let newShoppingCart = this.state.shoppingCart;
+  newShoppingCart.splice(newShoppingCart.indexOf(product), 1);
+  this.setState({
+    shoppingCart: newShoppingCart
+  })
+  console.log(this.state.shoppingCart);
+}
+
+render() {
+  return (
+    <div className="App">
+      <NavBar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/storefront" render={() => {
+          return <StoreFront
+            addToShoppingCart={this.addToShoppingCart} />
+        }} />
+        <Route path="/shoppingcart" render={() => {
+          return <ShoppingCart
+            shoppingCart={this.state.shoppingCart}
+            removeFromShoppingCart={this.removeFromShoppingCart} />
+        }} />
+      </Switch>
+    </div>
+  );
+}
 }
 
 export default App;
